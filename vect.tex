@@ -1,0 +1,42 @@
+% Other stuff
+\def\doDdiff[#1][#2]{  % différentielles et dérivées secondes - macro interne
+  \ifsecondargument {\frac{{\rm d^2} #1}{{\rm d} {#2}^2}}
+  \else {\rm d^2} \fi
+}
+\def\ddiff{\dodoubleempty\doDdiff} 
+
+% Vectors
+\def\doVV[#1][#2]{  
+  \ifsecondargument {\vvtwo{#1}{#2}} \else {\vvone{#1}} \fi
+}
+\def\vv{\dodoubleempty\doVV} 
+
+\def\vvone#1{
+    \tikz[baseline=(char.base),
+      -> /.tip = {Straight Barb[length=0.2em,width=0.5ex,slant=0.3]}]{
+      \def\vup{0.3ex}
+      \node[inner sep=0pt] (char) {$#1$};
+      \draw[->] ($(char.north west)+(0,\vup)$) -- ($(char.north
+      east)+(0.1em,\vup)$);
+    }
+}
+\def\vvtwo#1#2{
+  \tikz[baseline=(char.base),
+    -> /.tip = {Straight Barb[length=0.2em,width=0.5ex,slant=0.3]}]{
+    \def\vup{0.3ex}
+    \node[inner sep=0pt, text opacity=0] (char) {$#1$};
+    \node[inner sep=0pt, anchor=base west] (full) at (char.base west) {$#1_{#2}$};
+    \draw[->] ($(char.north west)+(0,\vup)$) -- ($(char.north
+    east)+(0.1em,\vup)$);
+  }
+}
+\def\vsuper[#1][#2]{
+  \tikz[baseline=(char.base),
+    -> /.tip = {Straight Barb[length=0.2em,width=0.5ex,slant=0.3]}]{
+    \def\vup{0.3ex}
+    \node[inner sep=0pt, text opacity=0] (char) {$#1$};
+    \node[inner sep=0pt, anchor=base west] (full) at (char.base west) {$#1^{#2}$};
+    \draw[->] ($(char.north west)+(0,\vup)$) -- ($(char.north
+    east)+(-0.em,\vup)$);
+  }
+}
