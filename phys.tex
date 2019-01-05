@@ -517,7 +517,8 @@ d\left(\frac{mv^2}{2}\right) = dK\]
 \[K = \sum_iK_i = \sum_i\frac{m_iv_i^2}{2}\]
 \subsection{Кинетическая энергия твёрдого тела при поступательном движении}
 \[K = \sum_iK_i = \sum_i\frac{m_iv_i^2}{2} = \frac{mv^2}{2}\]
-\subsection{Кинетическая энергия твёрдого тела при вращении вокруг оси}
+\subsection{Кинетическая энергия твёрдого тела при вращении вокруг оси. Момент
+инерции}
 \[v_i = \omega r_i\]
 \[K = \sum_iK_i = \sum_i\frac{m_iv_i^2}{2} = \frac{\omega^2}{2}\sum_im_ir_i^2\]
 {\bf Момент инерции} --- это величина, определяемая формулой:
@@ -786,19 +787,255 @@ I\vv{\omega}\]
 {\bf Виртуальное перемещение} --- это воображаемое бесконечно малое перемещение
 точки, допускаемое связями в данный момент времени.
 \[\vv{r_l} = \vv{r_l}(q_1,\dots,q_s, t)\]
-\[\delta\vv{r_l} = \sum_i^s\frac{\partial\vv{r_l}}{\partial q_i}\delta q_i\]
+\[\delta\vv{r_l} = \sum_{i=1}^s\frac{\partial\vv{r_l}}{\partial q_i}\delta q_i\]
 {\bf Виртуальная работа} --- работа силы на виртуальном перемещении.
 \[\delta A = \left(\vv{F}, \delta\vv{r}\right)\]
 {\bf Идеальные связи} --- это связи, для которых виртуальная работа сил реакции
 равна нулю.
-\[\delta A_R = \sum_i\left(\vv{R_i}, \delta\vv{r_i}\right) = 0\]
+\[\delta A_R = \sum_l\left(\vv{R_l}, \delta\vv{r_l}\right) = 0\]
+
 \section{Уравнения Лагранжа. Обобщённые силы}
+Будем рассматривать систему с идеальными голономными связями. Выведем
+дифференциальное уравнение второго порядка, описывающее её движение через
+обобщённые координаты.
+\[\vv{r_l} = \vv{r_l}(q_1,\dots, q_s, t)\]
+\[\delta\vv{r_l} = \sum_{i=1}^s\frac{\partial\vv{r_l}}{\partial q_i}\delta q_i\]
+\[\delta A_R = \sum_l\left(\vv{R_l}, \delta\vv{r_l}\right) = 0 \text{ (поскольку
+связи идеальные)}\]
+\[m_l\ddot{\vv{r_l}} = \vv{F_l} + \vv{R_l}\]
+\[\boxed{\sum_l\left(m_l\ddot{\vv{r_l}}-\vv{F_l}, \delta\vv{r_l}\right) = 0}\]
+\[\sum_l\left(m_l\ddot{\vv{r_l}}-\vv{F_l}, \sum_{i=1}^s\frac{\partial\vv{r_l}}
+{\partial q_i}\delta q_i \right) = 0 \text{ (подставили выражение для }
+\delta\vv{r_l})\]
+\[\sum_{i=1}^s\delta q_i\sum_l\left(m_l\ddot{\vv{r_l}}-\vv{F_l},
+\frac{\partial\vv{r_l}}{\partial q_i}\right) = 0 \text{ (вынесли скаляр,
+изменили порядок суммирования)}\]
+Обозначим $X_i = \sum_l\left(m_l\ddot{\vv{r_l}}, \frac{\partial\vv{r_l}}
+{\partial q_i}\right)$, $Q_i = \sum_l\left(\vv{F_l}, \frac{\partial\vv{r_l}}
+{\partial q_i}\right)$.
+\[\sum_{i=1}^s\left(X_i-Q_i\right)\delta q_i = 0\]
+\[X_i = Q_i\]
+Покажем, что $X_i$ можно выразить через кинетическую энергию системы и её
+производные по обобщённым координатам и скоростям.
+\[K = \frac{1}{2}\sum_lm_l\left(\vv{v_l},\vv{v_l}\right)\]
+\[\vv{r_l} = \vv{r_l}(q_1,\dots, q_s, t)\]
+\[\vv{v_l} = \dot{\vv{r_l}} = \sum_{i=1}^s\frac{\partial\vv{r_l}}{\partial
+q_i}\dot{q_i} + \frac{\partial\vv{r_l}}{\partial t} = \vv{v_l}(q, \dot{q}, t)\]
+\[\frac{\partial\vv{v_l}}{\partial \dot{q_i}} = \frac{\partial\vv{r_l}}{\partial
+q_i}\]
+\[\frac{\partial K}{\partial \dot{q_i}} = \frac{\partial}{\partial \dot{q_i}}
+\left(\frac{1}{2}\sum_lm_l\left(\vv{v_l},\vv{v_l}\right)\right) =
+\sum_lm_l\left(\vv{v_l},\frac{\partial\vv{v_l}}{\partial \dot{q_i}}\right) =
+\sum_lm_l\left(\vv{v_l},\frac{\partial\vv{r_l}}{\partial q_i}\right)\]
+\[\frac{d}{dt}\left(\frac{\partial K}{\partial \dot{q_i}}\right) = 
+\sum_lm_l\left(\dot{\vv{v_l}},\frac{\partial\vv{r_l}}{\partial q_i}\right) + 
+\sum_lm_l\left(\vv{v_l},\frac{\partial\vv{v_l}}{\partial q_i}\right) = X_i +
+\frac{\partial K}{\partial q_i}\]
+\[\boxed{X_i = Q_i = \frac{d}{dt}\left(\frac{\partial K}{\partial
+\dot{q_i}}\right) - \frac{\partial K}{\partial q_i}}\]
+Получили уравнение Лагранжа относительно кинетической энергии.\\
+Величина $Q_i = \sum_l\vv{F_l}\frac{\partial\vv{r_l}}{\partial q_i}$ называется
+{\bf обобщённой силой}. По своему физическому смыслу она представляет собой
+проекцию силы на ось либо момент силы относительно оси.
+
 \section{Функция Лагранжа. Обобщённые импульсы}
+Рассмотрим систему с идеальными голономными связями и потенциальными заданными
+силами. Получим функцию, выражающую разность кинетической и потенциальной
+энергий системы через обобщённые координаты и скорости.
+\[\vv{F_l} = -\left(\vv{i}\frac{\partial\Pi_l}{\partial x_l} +
+\vv{j}\frac{\partial\Pi_l}{\partial y_l} +
+\vv{k}\frac{\partial\Pi_l}{\partial z_l}\right)\]
+\[\vv{F_l}\frac{\partial\vv{r_l}}{\partial q_i} = -\left(
+\frac{\partial\Pi_l}{\partial x_l} \frac{\partial x_l}{\partial q_i} +
+\frac{\partial\Pi_l}{\partial y_l} \frac{\partial y_l}{\partial q_i} +
+\frac{\partial\Pi_l}{\partial z_l} \frac{\partial z_l}{\partial q_i}\right) =
+-\frac{\partial\Pi_l}{\partial q_i}\]
+Суммируя по всем $l$, получим:
+\[Q_i = -\frac{\partial \Pi}{\partial q_i}\]
+Подставим в уравнение Лагранжа относительно кинетической энергии:
+\[-\frac{\partial \Pi}{\partial q_i} = \frac{d}{dt}\left(\frac{\partial
+K}{\partial \dot{q_i}}\right) - \frac{\partial K}{\partial q_i}\]
+{\bf Лагранжиан системы} --- это функция $L=K-\Pi = L(q, \dot{q}, t)$
+--- разность кинетической и потенциальной энергий системы, выраженная через
+обобщённые координаты, обобщённые скорости и время.
+\[\boxed{\frac{d}{dt}\left(\frac{\partial L}{\partial\dot{q_i}}\right) = 0}\]
+Получили уравнения Лагранжа относительно функции Лагранжа. \\
+Величина $p_i = \frac{\partial L}{\partial\dot{q_i}}$ называется {\bf обобщённым
+импульсом}. По своему физическому смыслу она представляет собой проекцию
+импульса на ось либо момент импульса относительно оси.
+{\bf Закон изменения обобщённого импульса}: скорость изменения обобщённого
+импульса равна частной производной функции Лагранжа по соответствующей
+обобщённой координате.
+\[\dot{p_i} = \frac{\partial L}{\partial q_i}\]
+{\bf Циклическая обобщённая координата} --- это такая обобщённая координата,
+которая не входит явно в функцию Лагранжа. \\
+{\bf Закон сохранения обобщённого импульса}: обобщённый импульс, соответствующий
+циклической обобщённой координате, сохраняется.
+
 \section{Уравнения Гамильтона. Канонические переменные}
+{\bf Канонические переменные} --- это обобщённые координаты и импульсы
+системы.\\
+{\bf Уравнения Гамильтона} --- это уравнения движения, записанные в канонических
+переменных. \\
+Рассмотрим систему с идеальными голономными связями и потенциальными заданными
+силами. Получим для неё уравнения Гамильтона.
+\[\frac{d}{dt}\left(\frac{\partial L}{\partial\dot{q_i}}\right) = 0\]
+\[dL = \sum_{i=1}^s\left(\frac{\partial L}{\partial q_i}dq_i + \frac{\partial L}
+{\partial \dot{q_i}}d\dot{q_i}\right) + \frac{\partial L}{\partial t}dt =
+\sum_{i=1}^s\left(\dot{p_i}dq_i + p_id\dot{q_i}\right) + \frac{\partial
+L}{\partial t}dt \]
+Обозначим $H = \sum_{i=1}^s\dot{q_i}p_i-L$
+\[dH = \sum_{i=1}^s\left(\dot{q_i}dp_i + p_i\dot{q_i}\right) - dL =
+\sum_{i=1}^s\left(\dot{q_i}dp_i + p_i\dot{q_i} - \dot{p_i}dq_i -
+p_id\dot{q_i}\right) - \frac{\partial L}{\partial t}dt =
+\sum_{i=1}^s\left(\dot{q_i}dp_i - \dot{p_i}dq_i \right) - \frac{\partial
+L}{\partial t}dt\]
+Продифференцируем $H = H(q, p, t)$ как функцию канонических переменных
+\[dH = \sum_{i=1}^s\left(\frac{\partial H}{\partial q_i}dq_i + \frac{\partial
+H}{\partial p_i}dp_i\right) + \frac{\partial H}{\partial t}dt\]
+\[\boxed{\dot{q_i} = \frac{\partial H}{\partial p_i}, \dot{p_i} =
+-\frac{\partial H}{\partial p_i}}\]
+Получили уравнения Гамильтона или {\bf Гамильтониан} системы.
+
 \section{Гамильтониан консервативной системы}
+Дифференцируя функцию Гамильтона по времени, получим {\bf закон изменения
+Гамильтониана}
+\[\frac{dH}{dt} = \sum_{i=1}^s\left(\frac{\partial H}{\partial q_i}\dot{q_i} +
+\frac{\partial H}{\partial p_i}\dot{p_i}\right) + \frac{\partial H}{\partial
+t} = \sum_{i=1}^s\left(-\dot{p_i}\dot{q_i} + \dot{q_i}\dot{p_i}\right) +
+\frac{\partial H}{\partial t}\]
+\[\boxed{\frac{dH}{dt} = \frac{\partial H}{\partial t}}\]
+{\bf Консервативная система} --- это система, Гамильтониан которой не зависит
+явно от времени.\\
+Покажем, что Гамильтониан консервативной системы имеет смысл её полной
+механической энергии.
+\[\frac{dH}{dt} = 0\]
+\[H = \sum_{i=1}^s\dot{q_i}p_i - L\]
+\[p_i = \frac{\partial L}{\partial \dot{q_i}} = \frac{\partial (K-\Pi)}{\partial
+\dot{q_i}} = \frac{\partial K}{\partial \dot{q_i}}\]
+\[K = \frac{1}{2}\sum_lm_l\left(\vv{v_l},\vv{v_l}\right)\]
+\[\vv{v_l} = \dot{\vv{r_l}}\]
+\[\vv{r_l} = \vv{r_l}(q_1,\dots,q_s,t)\]
+\[\vv{v_l} = \sum_{i=1}^s\frac{\partial \vv{r_l}}{\partial q_i}\dot{q_i}\]
+\[K = \frac{1}{2}\sum_lm_l\left(\sum_{a=1}^s\frac{\partial \vv{r_l}}{\partial
+q_a}\dot{q_a}, \sum_{b=1}^s\frac{\partial \vv{r_l}}{\partial
+q_b}\dot{q_b}\vv{v_l}\right) = \frac{1}{2}\sum_{a=1}^s\sum_{b=1}^s\dot{q_a}
+\dot{q_b}\sum_lm_l \left(\frac{\partial \vv{r_l}}{\partial q_a}, \frac{\partial
+\vv{r_l}}{\partial q_b}\right)\]
+Обозначим $K_{ab}(q) = \sum_lm_l \left(\frac{\partial \vv{r_l}}{\partial q_a},
+\frac{\partial \vv{r_l}}{\partial q_b}\right)$
+\[K = \frac{1}{2} \sum_{a=1}^s\sum_{b=1}^s\dot{q_a}\dot{q_b}K_{ab}(q)\]
+\[p_i = \frac{\partial K}{\partial \dot{q_i}} = \frac{1}{2}
+\sum_{a=1}^s\sum_{b=1}^s\left(\dot{q_a}\frac{\partial
+\dot{q_b}}{\partial \dot{q_i}} + \dot{q_b}\frac{\partial \dot{q_a}}{\partial
+\dot{q_i}}\right) K_{ab}(q)\]
+\[p_j = \frac{1}{2} \sum_{a=1}^s\dot{q_a}\sum_{b=1}^sK_{ab}\delta_{bi} +
+\frac{1}{2} \sum_{b=1}^s\dot{q_b}\sum_{a=1}^sK_{ab}\delta_{ai}, \text{ где }
+\delta_{jk} \text{ --- символ Кронекера}\]
+\[\boxed{p_i = \sum_{j=1}^sK_{ij}\dot{q_j}}\]
+Подставим полученное выражение для импульса в функцию Гамильтона
+\[H = \sum_{i=1}^s\dot{q_i}\sum_{j=1}^sK_{ij}\dot{q_j} - L = \sum_{i=1}^s
+\sum_{j=1}^sK_{ij}\dot{q_i}\dot{q_j}-L = 2K - L = K + \Pi\]
+\[\boxed{H = K + \Pi}\]
+
 \section{Равновесие системы и его устойчивость}
+{\bf Равновесие} --- состояние, в котором система, предоставленная самой себе,
+может находиться сколь угодно долго.\\
+{\bf Условие равновесия}: сумма заданных сил и сил реакции, действующих на
+каждую материальную точку тела, равна нулю.
+\[F_l + R_l = 0\]
+\[\delta A_R = \sum_l\left(\vv{R_l}, \delta\vv{r_l}\right) = 0\]
+{\bf Принцип виртуального перемещения}: в состоянии равновесия виртуальная
+работа заданных сил равна нулю.
+\[\delta A_F = \sum_l\left(\vv{F_l}, \delta\vv{r_l}\right) = 0\]
+\[\delta \vv{r_l} = \sum_{i=1}^s \frac{\partial \vv{r_l}}{\partial q_i}\delta
+q_i\]
+\[\sum_l\left(\vv{F_l}, \sum_{i=1}^s \frac{\partial \vv{r_l}}{\partial q_i}\delta
+q_i\ \right) = \sum_{i=1}^s\delta q_i \left(\vv{F_l}, \sum_l \frac{\partial \vv{r_l}}{\partial q_i}\right) = 0\]
+\[\sum_{i=1}^sQ_i\delta q_i = 0\]
+Из независимости обобщённых координат имеем $Q_i = -\frac{\partial \Pi}{\partial
+q_i} = 0$, то есть в состоянии равновесия потенциальная энергия испытывает
+экстремум. \\
+Равновесие называется {\bf устойчивым}, если система, выведенная из положения
+равновесия и предоставленная самой себе, начинает двигаться в сторону положения
+равновесия. Устойчивость определяется типом экстремума потенциальной энергии:
+положение максимума устойчиво, а минимума --- нет.
+
 \section{Колебания в системах с одной степенью свободы}
+\subsection{Основные определения}
+{\bf Колебания} --- это повторяющиеся движения в окрестности положения устойчивого
+равновесия системы. \\
+{\bf Гармоническая функция} --- это функция, меняющаяся по закону синуса или
+косинуса.\\
+{\bf Амплитуда колебаний} --- это максимальное отклонение колеблющегося тела от
+положения равновесия. \\
+{\bf Период колебаний} --- это время одного полного колебания. \\
+{\bf Фаза колебаний} --- это аргумент тригонометрической функции, описывающей
+колебания. \\
+Уравнение гармонических колебаний:
+\[\ddot{x} +\omega^2 x = 0\]
+Общее решение:
+\[x(t) = A\cos{(\omega t + \varphi)}\]
+Найдём амплитуду и фазу колебаний
+\[\begin{dcases}
+	x(t = 0) = x_0 = A\cos{\varphi} \\
+	\dot{x}(t = 0) = \dot{x_0} = -\omega A\sin{\varphi}
+	\end{dcases}\]
+Разделив второе уравнение на $\omega$, возведя в квадрат и сложив, получим:
+\[A = \sqrt{x_0^2 + \frac{\dot{x_0}^2}{\omega^2}}\]
+\[\sin\varphi = \frac{x_0}{A}\]
+\[\cos\varphi = -\frac{\dot{x_0}}{\omega A}\]
+Чтобы найти $\omega$, нужно записать уравнение движения и привести его к
+стандартному виду $\ddot{x} +\omega^2 x = 0$.
+\subsection{Физический маятник}
+Найдём частоту колебаний физического маятника
+\[s = 1, q = \varphi, \dot{q} = \omega\]
+\[K = \frac{I\omega^2}{2} = \frac{I\dot{q}^2}{2}\]
+\[\Pi = -mgl\cos\varphi\]
+\[L = K-\Pi = \frac{I\dot{q}^2}{2} + mgl\cos{q}\]
+\[\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial
+L}{\partial q} = 0\]
+\[I\ddot{\varphi} + mgl\sin\varphi\]
+\[\sin\varphi \approx \varphi\]
+\[\ddot{\varphi} + \frac{mgl}{I}\varphi = 0\]
+\[\boxed{\omega = \sqrt{\frac{mgl}{I}}}\]
+Частным случаем физического маятника является математический маятник
+\[\omega = \sqrt{\frac{mgl}{ml^2}} = \sqrt{\frac{g}{l}}\]
+Другой частный случай --- маятник в виде кольца
+\[\omega = \sqrt{\frac{mgl}{2ml^2}} = \sqrt{\frac{g}{2l}}\]
+\subsection{Пружинный осциллятор}
+Найдём частоту колебаний пружинного осциллятора
+\[m\ddot{x} = mg - k(x-l_0)\]
+\[m\ddot{x} + k\left(x-l_0-\frac{m}{k}\right) = 0\]
+Обозначим $y = \left(x-l_0-\frac{m}{k}\right)$, тогда $\ddot{y} = \ddot{x}$
+\[\ddot{y} + \frac{k}{m}y = 0\]
+\[\boxed{\omega = \sqrt{\frac{k}{m}}}\]
+
 \section{Физические эффекты в колебательных системах}
+\subsection{Затухающие колебания}
+Уравнение затухающих колебаний:
+\[\ddot{x} + \alpha\dot{x} + \omega^2x = 0\]
+{\bf Добротность колебательной системы} --- количество колебаний, которое будет
+совершено до остановки маятника. Чем выше добротность, тем ближе затухающие
+колебания к свободным гармоническим.
+\[Q=\frac{T_{\text{зат}}}{T}\]
+\subsection{Нелинейные и параметрические колебания}
+Уравнение нелинейных колебаний:
+\[\ddot{x} + \omega^2f(x) = 0\]
+Основная особенность таких колебаний --- зависимость периода от амплитуды. \\
+{\bf Параметрические колебания} --- это колебания, возникающие при изменении
+какого-либо параметра колебательной системы в результате внешнего
+взаимодействия. \\
+{\bf Параметрический резонанс} --- это явление возрастания амплитуды колебаний в
+результате параметрического возбуждения, создаваемого временным изменением
+параметров системы. \\
+Характерным примером параметрических колебаний являются качели.
+\subsection{Вынужденные колебания}
+{\bf Вынужденные колебания} --- это колебания, происходящие под действием
+переменной внешней силы. \\
+{\bf Резонанс} --- это явление возрастания амплитуды колебаний при совпадении
+частоты изменения внешней силы с собственной частотой колебаний системы. \\
+
 \section{Нормальные колебания и нормальные координаты}
 \section{Колебания струны}
 \section{Случайные величины и вероятности}
